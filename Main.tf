@@ -1,7 +1,6 @@
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
-
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
@@ -11,7 +10,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_s3_bucket" "my_storage" {
-  bucket = "micah-devsecops-lab-2026-dso" 
+  bucket = var.bucket_name
 }
 
 resource "aws_security_group" "allow_web" {

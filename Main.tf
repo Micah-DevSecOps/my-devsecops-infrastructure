@@ -13,3 +13,17 @@ resource "aws_vpc" "main" {
 resource "aws_s3_bucket" "my_storage" {
   bucket = "micah-devsecops-lab-2026-dso" 
 }
+
+resource "aws_security_group" "allow_web" {
+  name        = "allow_web_traffic"
+  description = "Allow inbound web traffic"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "HTTPS from anywhere"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}

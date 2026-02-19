@@ -27,3 +27,12 @@ resource "aws_security_group" "allow_web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_subnet" "public_subnet" {
+  vpc_id     = aws_vpc.main.id
+  cidr_block = "10.0.1.0/24"
+
+  tags = {
+    Name = "micah-public-room"
+  }
+}
